@@ -53,11 +53,23 @@ df = komodo.with_columns([
     pl.col("service_date").str.strptime(pl.Date, "%Y-%m-%d", strict=False).dt.strftime("%Y-%m").alias("procedure_month")
 ])
 
+# Limit to specific procedure codes
+code_labels = {
+    "22612": "22612 – Lumbar spine fusion, single level (posterior technique)",
+    "22630": "22630 – Arthrodesis, lumbar, interbody technique, including laminectomy/discectomy",
+    "22633": "22633 – Combined posterior and interbody lumbar fusion, single segment"
+}
+target_codes = list(code_labels.keys())
+
+# Filter the full dataset to only those codes
+df = df.filter(pl.col("procedure_code").is_in(target_codes))
+
+# Sidebar procedure code selector with labels
+selected_label = st.sidebar.selectbox("Select Procedure Code", list(code_labels.values()))
+selected_code = [code for code, label in code_labels.items() if label == selected_label][0]
+
 # --- Sidebar Filters ---
 st.sidebar.header("Filter Panel")
-
-procedure_codes = df.select("procedure_code").unique().sort("procedure_code").to_series().to_list()
-selected_code = st.sidebar.selectbox("Select Spinal Procedure Code", procedure_codes)
 
 group_by_options = ["provider_state", "payer_name", "patient_gender"]
 group_by = st.sidebar.selectbox("Group By", group_by_options)
