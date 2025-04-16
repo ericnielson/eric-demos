@@ -1,48 +1,39 @@
-id: 91f424f8-d42a-4029-a482-c9aa8dfc0ea6 ### This will be auto-generated for you
-name: Unique NPIs
-description: Finds on the unique NPIs between two datasets
+id: 91f424f8-d42a-4029-a482-c9aa8dfc0ea7 ### This will be auto-generated for you
+name: Prescribing Trends at ASC
+description: Finds patients who had spinal fusions at ASCs
 accessibility: ACCOUNT ### ACCOUNT or GLOBAL (GLOBAL requires a special Komodo permission currently restricted to Platform Analytics)
 isNetworkRestricted: false ### Leave alone
 analyticDefinitionVersion:
-  id: 882815f6-e6c9-4816-b4a5-4945f5a3571b ### This will be auto-generated for you
-  version: 4.0.0 
-  description: HCP Deciling
+  id: 882815f6-e6c9-4816-b4a5-4945f5a3571c ### This will be auto-generated for you
+  version: 1.0.0 
+  description: Streamlit App as AD Test
   type: Python ### Python or SQL (R and DBT coming soon)
   publishingStatus: PUBLISHED ### Use DRAFT to restrict accewss to only you or PUBLISHED if you want others to see and use
   contributorDefinedInputs: ### You can have one or many inputs
   ### Using a Dataset from Dataset Builder
-    - name: ultomiris_2024_rx
-      label: ultomiris_2024_rx data collection to consume
+    - name: medical_events_id
+      label: medical events table from Dataset Builder
       type: DATA_COLLECTION
       required: true
-  ### Using a Snowflake Table
-    - name: ultomiris_2023_rx ### If using a Snowflake table, this name must be the exact match of the Snowflake table name
-      label: ultomiris_2023_rx data collection to consume
-      type: STRING
+    - name: patient_demographics_id
+      label: patient demographics from Dataset Builder
+      type: DATA_COLLECTION
       required: true
-  ### Using a Cohort
-    - name: ultomiris_2024_providers
-      label: ultomiris_2024_providers data collection to consume
-      type: FILTER_DEFINITION_AND_PATIENT_IDENTIFICATION_TIMEFRAME
+    - name: providers_id
+      label: providers table from Dataset Builder
+      type: DATA_COLLECTION
       required: true
-  ### Using a Codeset or Complex Medical Concept
-    - name: ultomiris_2023_providers
-      label: ultomiris_2023_providers data collection to consume
-      type: MEDICAL_CONCEPTS
+    - name: patient_geographic_id
+      label: patient geographic table from Dataset Builder
+      type: DATA_COLLECTION
       required: true
-  ### Using a Drug Brand
-      - name: ultomiris_2023_providers
-      label: ultomiris_2023_providers data collection to consume
-      type: DRUG_BRANDS
-      required: true
-  ### Using a Drug Molecule
-      - name: ultomiris_2023_providers
-      label: ultomiris_2023_providers data collection to consume
-      type: DRUG_MOLECULES
+    - name: plans_id
+      label: plans table from Dataset Builder
+      type: DATA_COLLECTION
       required: true
   contributorDefinedOutputs: ### You can have one or many outputs
   ### These are our your output dataset names and must match from your Analytic (i.e. if your Analytic outputs 'HCP_SUMMARY' this Output name must be 'HCP_SUMMARY')
-    - name: ULTOMIRIS_UNIQUE_NPIS_2024
+    - name: df
   ### Can be any file name as long as it ends with .py for a Python analytic or .sql for a SQL analytic
   file_path: analytic.py
   requirements_path: requirements.txt
