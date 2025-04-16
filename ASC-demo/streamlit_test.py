@@ -3,14 +3,12 @@ import polars as pl
 import plotly.express as px
 import os
 
-# --- Config ---
 st.set_page_config(
     page_title="Procedure Trends | YOUR COMPANY HERE",
     page_icon="📈",
     layout="wide"
 )
 
-# --- Custom Header ---
 st.markdown("""
     <style>
         .main {
@@ -32,7 +30,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Logo and Title ---
 col1, col2 = st.columns([1, 5])
 with col1:
     logo_path = "Komodo-light.png"
@@ -42,18 +39,15 @@ with col2:
     st.markdown("### **Procedure Trends Explorer**")
     st.caption("by YOUR COMPANY HERE – Apps can be customized according to your needs")
 
-# --- Load Data ---
 KOMODO_PATH = "komodo_procedure_adoption.csv"
 komodo = pl.read_csv(KOMODO_PATH).with_columns(pl.lit("KOMODO").alias("TYPE"))
 komodo = komodo.rename({col: col.lower() for col in komodo.columns})
 
-# --- Parse Dates ---
 df = komodo.with_columns([
     pl.col("service_date").str.strptime(pl.Date, "%Y-%m-%d", strict=False).alias("service_date_parsed"),
     pl.col("service_date").str.strptime(pl.Date, "%Y-%m-%d", strict=False).dt.strftime("%Y-%m").alias("procedure_month")
 ])
 
-# Limit to specific procedure codes
 code_labels = {
     "22612": "22612 – Lumbar spine fusion, single level (posterior technique)",
     "22630": "22630 – Arthrodesis, lumbar, interbody technique, including laminectomy/discectomy",
@@ -61,20 +55,16 @@ code_labels = {
 }
 target_codes = list(code_labels.keys())
 
-# Filter the full dataset to only those codes
 df = df.filter(pl.col("procedure_code").is_in(target_codes))
 
-# Sidebar procedure code selector with labels
 selected_label = st.sidebar.selectbox("Select Procedure Code", list(code_labels.values()))
 selected_code = [code for code, label in code_labels.items() if label == selected_label][0]
 
-# --- Sidebar Filters ---
 st.sidebar.header("Filter Panel")
 
 group_by_options = ["provider_state", "payer_name", "patient_gender"]
 group_by = st.sidebar.selectbox("Group By", group_by_options)
 
-# --- Main Logic ---
 if selected_code is not None:
     filtered = df.filter(pl.col("procedure_code") == selected_code)
 

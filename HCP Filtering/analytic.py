@@ -1,4 +1,4 @@
-### ---- Boiler --- ### 
+### ---- Import Libraries & Connect to Snowflake --- ### 
 import os
 from komodo.client import Client
 from komodo.definitions.models.cohorts.cohort_create import CohortCreate
