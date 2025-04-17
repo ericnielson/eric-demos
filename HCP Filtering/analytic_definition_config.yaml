@@ -1,39 +1,24 @@
-id: 91f424f8-d42a-4029-a482-c9aa8dfc0ea7 ### This will be auto-generated for you
-name: Prescribing Trends at ASC
-description: Finds patients who had spinal fusions at ASCs
-accessibility: ACCOUNT ### ACCOUNT or GLOBAL (GLOBAL requires a special Komodo permission currently restricted to Platform Analytics)
-isNetworkRestricted: false ### Leave alone
+id: 6a014818-9739-4a1b-995b-8f2a4e3d6f4f
+name: Unique HCPs Between Two Datasets
+description: cloned from 6cab67fc-ad4d-44f0-892c-9dc24b1340a7
+accessibility: ACCOUNT
+isNetworkRestricted: true
 analyticDefinitionVersion:
-  id: 882815f6-e6c9-4816-b4a5-4945f5a3571c ### This will be auto-generated for you
-  version: 1.0.0 
-  description: Streamlit App as AD Test
-  type: Python ### Python or SQL (R and DBT coming soon)
-  publishingStatus: PUBLISHED ### Use DRAFT to restrict accewss to only you or PUBLISHED if you want others to see and use
-  contributorDefinedInputs: ### You can have one or many inputs
-  ### Using a Dataset from Dataset Builder
-    - name: medical_events_id
-      label: medical events table from Dataset Builder
+  id: b0377adf-22e1-4f78-a7d0-cc123369fc8d
+  version: 0.0.1
+  description: cloned from 9f4a9b33-7278-4e7c-97c6-b1f73810fc6e
+  type: Python
+  publishingStatus: DRAFT
+  contributorDefinedInputs:
+    - name: table_1
+      label: Table from Dataset Builder
       type: DATA_COLLECTION
       required: true
-    - name: patient_demographics_id
-      label: patient demographics from Dataset Builder
+    - name: table_2
+      label: Table from Dataset Builder
       type: DATA_COLLECTION
       required: true
-    - name: providers_id
-      label: providers table from Dataset Builder
-      type: DATA_COLLECTION
-      required: true
-    - name: patient_geographic_id
-      label: patient geographic table from Dataset Builder
-      type: DATA_COLLECTION
-      required: true
-    - name: plans_id
-      label: plans table from Dataset Builder
-      type: DATA_COLLECTION
-      required: true
-  contributorDefinedOutputs: ### You can have one or many outputs
-  ### These are our your output dataset names and must match from your Analytic (i.e. if your Analytic outputs 'HCP_SUMMARY' this Output name must be 'HCP_SUMMARY')
-    - name: df
-  ### Can be any file name as long as it ends with .py for a Python analytic or .sql for a SQL analytic
+  contributorDefinedOutputs:
+    - name: UNIQUE_HCPS
   file_path: analytic.py
   requirements_path: requirements.txt
