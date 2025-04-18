@@ -1,0 +1,12 @@
+form:
+  - label: Unique HCPs
+    description: Identify Unique HCPs Between Two Datasets
+    fields:
+      StudioDatasetSelect1:
+        label: Table 1
+        component: StudioDatasetSelect
+        required: true
+      StudioDatasetSelect:
+        label: Table 2
+        component: StudioDatasetSelect
+        required: true
