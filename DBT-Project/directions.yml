@@ -1,0 +1,5 @@
+Steps to run this folder:
+
+1. Install dbt to workspace or ensure there is a dbt compute driver
+2. Run the run_procedure_adoption Jupyter file
+3. Run models using dbt run

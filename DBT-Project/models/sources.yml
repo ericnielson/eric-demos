@@ -1,0 +1,6 @@
+version: 1
+
+sources:
+  - name: raw
+    tables:
+      - name: komodo_procedure_adoption
