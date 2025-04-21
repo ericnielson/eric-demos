@@ -62,6 +62,6 @@ print("--- Success filtering data ---")
 uniques = pd.read_sql(unique_query, conn)
 
 ### Upload to MapLab ###
-dataset_name = "UNIQUE_HCPS"
+dataset_name = "UNIQUE_HCPS_FROM_ANALYTIC"
 table_name, output_env_var_name, error = register_output(dataset_name, uniques, conn)
 print("--- Analytic Success ---")

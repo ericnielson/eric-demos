@@ -19,6 +19,6 @@ analyticDefinitionVersion:
       type: DATA_COLLECTION
       required: true
   contributorDefinedOutputs:
-    - name: UNIQUE_HCPS
+    - name: UNIQUE_HCPS_FROM_ANALYTIC
   file_path: analytic.py
   requirements_path: requirements.txt
